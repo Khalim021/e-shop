@@ -6,7 +6,7 @@ function FortniteList(props) {
     const {goods = [], addToCart} = props
 
     if(!goods.length) {
-        return <p><Loader /></p>
+        return <Loader />
     }
 
     return (

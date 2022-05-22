@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {api_url, api_key} from '../config';
+import BaksetList from './BaksetList';
 import Basket from './Basket';
 import FortniteList from './FortniteList';
 import Loader from './Loader';
@@ -8,6 +9,7 @@ function Shop(props) {
     const [goods, setGoods] = useState([]);
     const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState([]);
+    const [basketShow, setBasketShow] = useState(false);
 
     const addToCart = (item) => {
         const itemIndex = order.findIndex((orederItem) => orederItem.id === item.id);
@@ -33,6 +35,10 @@ function Shop(props) {
         }
     }
 
+    const handleBasketShow = () => {
+        setBasketShow(!basketShow)
+    }
+
     useEffect(() => {
         fetch(api_url, {
             headers: {
@@ -44,8 +50,9 @@ function Shop(props) {
 
     return (
         <div className='content container'>
-            <Basket quantity={order.length} />
+            <Basket quantity={order.length} handleBasketShow={handleBasketShow}/>
             {loading ? <Loader /> : <FortniteList goods={goods} addToCart={addToCart} />}
+            {basketShow && <BaksetList order={order}/>}
         </div>
     );
 }
