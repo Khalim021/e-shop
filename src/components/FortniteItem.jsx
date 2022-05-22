@@ -1,7 +1,7 @@
 import React from 'react';
 
 function FortniteItem(props) {
-  const {id, name, description, price, full_background} = props
+  const {id, name, description, price, full_background, addToCart} = props
 
   return (
     <div className='card' id={id}>
@@ -10,7 +10,7 @@ function FortniteItem(props) {
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
             <p className="card-text">{description}</p>
-            <button className='btn btn-primary'>Buy Now</button>
+            <button className='btn btn-primary' onClick={() => addToCart({id, name, price})}>Buy Now</button>
             <span className='price-right' style={{fontSize: '1.6rem'}}>${price}</span>
           </div>
       </div>

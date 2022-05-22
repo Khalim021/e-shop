@@ -2,14 +2,14 @@ import React from 'react';
 
 function Footer() {
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className='footer-style'>
+      <footer className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <div className="collapse navbar-collapse d-flex justify-content-center">
+          <div className="collapse navbar-collapse d-flex justify-content-center py-5">
             © {new Date().getFullYear()} Copyright Text
           </div>
         </div>
-      </nav>
+      </footer>
     </div>
   );
 }

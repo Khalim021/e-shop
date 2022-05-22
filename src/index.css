@@ -1,15 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Macondo&family=Nunito:wght@600&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Macondo', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  background-color: antiquewhite;
 }
 
 .nav {
@@ -27,10 +23,53 @@ code {
   gap: 1rem;
 }
 
+.card-title {
+  font-family: 'Macondo', cursive;
+  font-size: 1.5rem;
+}
+
 .price-right {
   float: right;
   margin-top: 5px;
 }
 
+.basket-style {
+  background-color: rgb(159, 159, 250);
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  position: fixed;
+  right: 1rem;
+  padding: 0.5rem;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.header-style {
+  background-color: rgb(159, 159, 250);
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.collapse {
+  color: #fff;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.gamepad {
+  font-size: 3rem;
+  color: #fff;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+.footer-style {
+  background-color: rgb(159, 159, 250);
+}
 
 

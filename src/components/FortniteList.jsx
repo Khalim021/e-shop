@@ -1,17 +1,18 @@
 import React from 'react';
 import FortniteItem from './FortniteItem';
+import Loader from './Loader';
 
 function FortniteList(props) {
-    const {goods = []} = props
+    const {goods = [], addToCart} = props
 
     if(!goods.length) {
-        return <h3>there is nothing here</h3>
+        return <p><Loader /></p>
     }
 
     return (
         <div className='cards'>
             {goods.map((item) => (
-                <FortniteItem key={item.id} {...item}/>
+                <FortniteItem key={item.id} {...item} addToCart={addToCart}/>
             ))}
         </div>
     );
