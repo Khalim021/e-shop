@@ -1,9 +1,11 @@
 import React from 'react';
 import FortniteItem from './FortniteItem';
 import Loader from './Loader';
+import {useContext} from 'react';
+import {ShopContext} from '../context';
 
-function FortniteList(props) {
-    const {goods = [], addToCart} = props
+function FortniteList() {
+    const {goods = []} = useContext(ShopContext)
 
     if(!goods.length) {
         return <Loader />
@@ -12,7 +14,7 @@ function FortniteList(props) {
     return (
         <div className='cards'>
             {goods.map((item) => (
-                <FortniteItem key={item.id} {...item} addToCart={addToCart}/>
+                <FortniteItem key={item.id} {...item}/>
             ))}
         </div>
     );
