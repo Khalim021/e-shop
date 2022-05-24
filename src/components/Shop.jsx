@@ -1,23 +1,25 @@
 import React, {useState, useEffect} from 'react';
+import { toast } from 'react-toastify';
 import {api_url, api_key} from '../config';
 import BaksetList from './BaksetList';
 import Basket from './Basket';
 import FortniteList from './FortniteList';
 import Loader from './Loader';
 
-function Shop(props) {
+function Shop() {           
     const [goods, setGoods] = useState([]);
     const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState([]);
     const [basketShow, setBasketShow] = useState(false);
 
     const addToCart = (item) => {
-        const itemIndex = order.findIndex((orederItem) => orederItem.id === item.id);
+        const itemIndex = order.findIndex(
+            (orederItem) => orederItem.id === item.id);
 
         if(itemIndex < 0) {
             const newItem = {
                 ...item,
-                quentity: 1,
+                quantity: 1,
             }
             setOrder([...order, newItem])
         } else{
@@ -28,12 +30,15 @@ function Shop(props) {
                         quantity: orederItem.quantity + 1,
                     }
                 } else {
-                    return item
+                    return orederItem
                 }
             });
             setOrder(newOrder)
         }
+        toast.success('Item added successfully');
     }
+
+    
 
     const handleBasketShow = () => {
         setBasketShow(!basketShow)
@@ -42,6 +47,39 @@ function Shop(props) {
     const removeFromBasket = (itemID) => {
         const newOrder = order.filter(item => item.id !== itemID);
         setOrder(newOrder)
+        toast.error('Item removed successfully')
+    }
+
+    const incrementQuentity = (itemID) => {
+        const newOrder = order.map(el => {
+            if(el.id === itemID) {
+                const newQuentity = el.quantity + 1
+                return{
+                    ...el,
+                    quantity: newQuentity,
+                }
+            } else {
+                return el
+            }
+        })
+        setOrder(newOrder);
+        toast.success('Added successfully')
+    }
+
+    const decrementQuentity = (itemID) => {
+        const newOrder = order.map(el => {
+            if(el.id === itemID) {
+                const newQuentity = el.quantity - 1
+                return{
+                    ...el,
+                    quantity: newQuentity >= 0 ? newQuentity : 0,
+                }
+            } else {
+                return el
+            }
+        })
+        setOrder(newOrder);
+        toast.error('Removed successfully')
     }
 
     useEffect(() => {
@@ -59,7 +97,10 @@ function Shop(props) {
             {loading ? <Loader /> : <FortniteList goods={goods} addToCart={addToCart} />}
             {basketShow && <BaksetList order={order} 
             handleBasketShow={handleBasketShow} 
-            removeFromBasket={removeFromBasket}/>
+            removeFromBasket={removeFromBasket}
+            incrementQuentity={incrementQuentity}
+            decrementQuentity={decrementQuentity}
+            />
             }
         </div>
     );

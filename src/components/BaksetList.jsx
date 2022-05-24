@@ -4,10 +4,10 @@ import BasketItem from './BasketItem';
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 
 function BaksetList(props) {
-  const {order, handleBasketShow} = props;
+  const {order, handleBasketShow, decrementQuentity, incrementQuentity} = props;
 
   const totalPrice = order.reduce((sum, el) => {
-    return sum + el.price * el.quentity
+    return sum + el.price * el.quantity
   }, 0)
 
   return (
@@ -19,6 +19,8 @@ function BaksetList(props) {
             key={item.id} 
             {...item} 
             removeFromBasket={props.removeFromBasket}
+            incrementQuentity={incrementQuentity}
+            decrementQuentity={decrementQuentity}
             />
           )
         }) : <div className='empty-info'>Cart is empty</div>}
