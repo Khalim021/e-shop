@@ -17,7 +17,7 @@ function Shop(props) {
         if(itemIndex < 0) {
             const newItem = {
                 ...item,
-                quentity: 1
+                quentity: 1,
             }
             setOrder([...order, newItem])
         } else{
@@ -25,7 +25,7 @@ function Shop(props) {
                 if(index === itemIndex) {
                     return{
                         ...orederItem,
-                        quantity: orederItem.quantity + 1
+                        quantity: orederItem.quantity + 1,
                     }
                 } else {
                     return item
@@ -37,6 +37,11 @@ function Shop(props) {
 
     const handleBasketShow = () => {
         setBasketShow(!basketShow)
+    }
+
+    const removeFromBasket = (itemID) => {
+        const newOrder = order.filter(item => item.id !== itemID);
+        setOrder(newOrder)
     }
 
     useEffect(() => {
@@ -52,7 +57,10 @@ function Shop(props) {
         <div className='content container'>
             <Basket quantity={order.length} handleBasketShow={handleBasketShow}/>
             {loading ? <Loader /> : <FortniteList goods={goods} addToCart={addToCart} />}
-            {basketShow && <BaksetList order={order}/>}
+            {basketShow && <BaksetList order={order} 
+            handleBasketShow={handleBasketShow} 
+            removeFromBasket={removeFromBasket}/>
+            }
         </div>
     );
 }
